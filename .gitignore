@@ -10,10 +10,6 @@ __pycache__/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# Data files (you can keep these local)
-data/raw/
-data/cleaned/
-data/final/
 
 # Reports (optional: you might want to keep final_report.md in Git)
 reports/figures/
