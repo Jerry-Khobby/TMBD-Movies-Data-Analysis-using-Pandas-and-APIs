@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import pandas as pd 
 import logging
 
-#load variables from .env file 
+ 
 load_dotenv()
 
 # configure logging to console
