@@ -75,12 +75,10 @@ tmdb-movie-analysis/
 │   └── data-visualisation.ipynb                 # Visualization generation
 │
 ├── src/
-│   ├── __init__.py
 │   └── api_client.py                 # TMDB API data fetching script
 │
 └── reports/
-    ├── figures/                      # Generated visualizations (PNG files)
-    └── analysis_summary.md           # Key findings and insights
+    ├── figures/                      # Generated visualizations (PNG files)         
 ```
 
 ---
@@ -108,8 +106,8 @@ tmdb-movie-analysis/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/tmdb-movie-analysis.git
-cd tmdb-movie-analysis
+git clone https://github.com/Jerry-Khobby/TMBD-Movies-Data-Analysis-using-Pandas-and-APIs.git
+cd tmdb-movie-data-analysis
 ```
 
 2. **Create a virtual environment**
