@@ -15,7 +15,6 @@ A comprehensive data analysis pipeline that fetches, cleans, analyzes, and visua
 - [Key Findings](#key-findings)
 - [Project Deliverables](#project-deliverables)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -406,6 +405,3 @@ If you have questions about this project:
 - Open an issue on GitHub
 - Contact via email: [jeremiah.anku.coblah@gmail.com]
 
----
-
-**Last Updated:** December 2024
