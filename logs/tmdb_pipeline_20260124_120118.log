@@ -1,0 +1,25 @@
+2026-01-24 12:01:18,287 | INFO | Step 1: Extracting raw movie data
+2026-01-24 12:01:28,139 | INFO | Raw movie data saved at: ./data/raw/tmdb_movies_raw.json
+2026-01-24 12:01:28,139 | INFO | Step 2: Cleaning and transforming data
+2026-01-24 12:01:28,164 | INFO | Cleaned data saved at: ./data/clean/tmdb_movies_clean.csv
+2026-01-24 12:01:28,164 | INFO | Step 3: Computing KPI rankings
+2026-01-24 12:01:28,243 | INFO | KPI rankings saved to directory: ./data/kpi_results
+2026-01-24 12:01:28,243 | INFO | Step 4: Computing advanced KPIs
+2026-01-24 12:01:28,311 | INFO | Advanced KPI results saved to directory: ./data/kpi_results/advanced
+2026-01-24 12:01:28,312 | INFO | Step 5: Generating visualizations
+2026-01-24 12:01:30,050 | ERROR | Pipeline failed: "['roi'] not in index"
+Traceback (most recent call last):
+  File "C:\Users\JeremiahAnkuCoblah\Desktop\TMBD-Movies-Data-Analysis\main.py", line 64, in main
+    plot_paths = visualize_tmdb(df_clean, output_dir=viz_dir)
+  File "C:\Users\JeremiahAnkuCoblah\Desktop\TMBD-Movies-Data-Analysis\visualisation.py", line 56, in visualize_tmdb
+    df_genres = df[['genres', 'roi']].dropna()
+                ~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JeremiahAnkuCoblah\Desktop\TMBD-Movies-Data-Analysis\venv\Lib\site-packages\pandas\core\frame.py", line 4119, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\JeremiahAnkuCoblah\Desktop\TMBD-Movies-Data-Analysis\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6212, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JeremiahAnkuCoblah\Desktop\TMBD-Movies-Data-Analysis\venv\Lib\site-packages\pandas\core\indexes\base.py", line 6264, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['roi'] not in index"
