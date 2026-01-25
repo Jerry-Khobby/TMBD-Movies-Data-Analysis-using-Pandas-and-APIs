@@ -1,5 +1,0 @@
-2026-01-24 11:42:26,974 | INFO | Starting TMDB load and cleaning pipeline
-2026-01-24 11:42:26,974 | INFO | Loading raw CSV from ../data/raw/tmdb_movies_raw.json
-2026-01-24 11:42:27,012 | INFO | Cleaning and transforming raw data
-2026-01-24 11:42:27,034 | INFO | Cleaned CSV saved at: ../data/clean/tmdb_movies_clean.csv
-2026-01-24 11:42:27,034 | INFO | TMDB load and cleaning pipeline finished

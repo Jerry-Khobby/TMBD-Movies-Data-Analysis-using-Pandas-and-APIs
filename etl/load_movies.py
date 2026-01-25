@@ -1,41 +1,54 @@
-# load_movies.py
+# etl/load_movies.py
+
 import pandas as pd
 import logging
-from datetime import datetime
-from etl.transform import clean_tmdb
 import os
+from etl.transform import clean_tmdb
 
-# Setup logging
-LOG_DIR = "../logs"
-os.makedirs(LOG_DIR, exist_ok=True)
-log_file = os.path.join(LOG_DIR, f"tmdb_load_{datetime.now():%Y%m%d_%H%M%S}.log")
+# Setup logger
+logger = logging.getLogger(__name__)
+if not logger.hasHandlers():  # avoid duplicate handlers if imported multiple times
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s | %(levelname)s | %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
 
-logger = logging.getLogger("tmdb_load")
-logger.setLevel(logging.INFO)
-fh = logging.FileHandler(log_file)
-formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
-fh.setFormatter(formatter)
-logger.addHandler(fh)
+def load_and_clean_tmdb(raw_json_path: str, output_csv_path: str) -> pd.DataFrame:
+    """
+    Load raw TMDB JSON, clean it, and save cleaned CSV.
+    Returns the cleaned DataFrame or empty DataFrame if errors occur.
+    """
+    try:
+        logger.info("Loading raw TMDB data from %s", raw_json_path)
+        if not os.path.exists(raw_json_path):
+            logger.error("Raw JSON file not found: %s", raw_json_path)
+            return pd.DataFrame()
 
-logger.info("Starting TMDB load and cleaning pipeline")
+        try:
+            df_raw = pd.read_json(raw_json_path, orient="records")
+            logger.info("Loaded raw data | records=%s", len(df_raw))
+        except ValueError as ve:
+            logger.exception("Failed to parse JSON | error=%s", ve)
+            return pd.DataFrame()
 
-try:
-    # Path to raw CSV
-    raw_csv_path = "../data/raw/tmdb_movies_raw.json"
-    logger.info(f"Loading raw CSV from {raw_csv_path}")
-    df_raw = pd.read_json(raw_csv_path,orient="records",indent=2)
+        try:
+            logger.info("Cleaning TMDB data")
+            df_clean = clean_tmdb(df_raw)
+            logger.info("Data cleaned successfully | records=%s", len(df_clean))
+        except Exception as e:
+            logger.exception("Error during cleaning TMDB data | error=%s", e)
+            return pd.DataFrame()
 
-    # Clean data
-    logger.info("Cleaning and transforming raw data")
-    df_clean = clean_tmdb(df_raw)
+        try:
+            os.makedirs(os.path.dirname(output_csv_path), exist_ok=True)
+            df_clean.to_csv(output_csv_path, index=False)
+            logger.info("Cleaned data saved to CSV | path=%s", output_csv_path)
+        except Exception as e:
+            logger.exception("Failed to save cleaned CSV | path=%s | error=%s", output_csv_path, e)
 
-    # Save cleaned CSV
-    output_csv = "../data/clean/tmdb_movies_clean.csv"
-    os.makedirs(os.path.dirname(output_csv), exist_ok=True)
-    df_clean.to_csv(output_csv, index=False)
-    logger.info(f"Cleaned CSV saved at: {output_csv}")
+        return df_clean
 
-except Exception as e:
-    logger.exception(f"An error occurred during loading and cleaning: {e}")
-
-logger.info("TMDB load and cleaning pipeline finished")
+    except Exception as e:
+        logger.exception("Unexpected error in load_and_clean_tmdb | error=%s", e)
+        return pd.DataFrame()

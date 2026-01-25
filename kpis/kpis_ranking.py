@@ -5,13 +5,7 @@ from typing import Dict
 import logging
 
 # Setup logger
-logger = logging.getLogger("tmdb_kpi_save")
-logger.setLevel(logging.INFO)
-if not logger.handlers:
-    ch = logging.StreamHandler()
-    formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
-    ch.setFormatter(formatter)
-    logger.addHandler(ch)
+logger = logging.getLogger(__name__)
 
 
 def compute_tmdb_kpis_and_save(df: pd.DataFrame, top_n: int = 10, output_dir: str = None) -> Dict[str, pd.DataFrame]:

@@ -5,13 +5,7 @@ import os
 from typing import Dict
 
 # Setup logger
-logger = logging.getLogger("tmdb_advanced")
-logger.setLevel(logging.INFO)
-if not logger.handlers:
-    ch = logging.StreamHandler()
-    formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
-    ch.setFormatter(formatter)
-    logger.addHandler(ch)
+logger = logging.getLogger(__name__)
 
 
 def advanced_tmdb_pandas(df: pd.DataFrame, top_n: int = 10, output_dir: str = None) -> Dict[str, pd.DataFrame]:
