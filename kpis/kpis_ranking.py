@@ -1,28 +1,60 @@
 import pandas as pd
 import numpy as np
-import os
 from typing import Dict
 import logging
+import json
+from datetime import datetime
 
-# Setup logger
-logger = logging.getLogger(__name__)
 
 
-def compute_tmdb_kpis_and_save(df: pd.DataFrame, top_n: int = 10, output_dir: str = None) -> Dict[str, pd.DataFrame]:
+
+def log_event(logger: logging.Logger, level: str, event_type: str, message: str, **kwargs):
     """
-    Compute KPI rankings for TMDB movies dataset using Pandas,
-    save KPI CSVs AND a new dataset with ROI and profit added.
+    Structured JSON logger.
     """
-    logger.info("Starting KPI computation for TMDB movies")
+    if logger is None:
+        raise ValueError("Logger must be provided to log_event")
+    
+    log_payload = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "level": level.upper(),
+        "event_type": event_type,
+        "message": message,
+        **kwargs
+    }
+
+    if level.lower() == "info":
+        logger.info(json.dumps(log_payload))
+    elif level.lower() == "warning":
+        logger.warning(json.dumps(log_payload))
+    elif level.lower() == "error":
+        logger.error(json.dumps(log_payload))
+    else:
+        logger.debug(json.dumps(log_payload))
+
+
+def compute_tmdb_kpis(df: pd.DataFrame, top_n: int = 10,logger:logging.Logger=None) -> Dict[str, pd.DataFrame]:
+    """
+    Compute KPI rankings for TMDB movies dataset.
+    Uses structured JSON logging.
+    """
+    log_event(logger, "info", "pipeline_start", "Starting KPI computation")
+
     df = df.copy()
 
     # --- Compute profit and ROI ---
-    logger.info("Computing profit and ROI")
     df['profit'] = df['revenue_musd'] - df['budget_musd']
     df['roi'] = df['revenue_musd'] / df['budget_musd']
-    df.loc[df['budget_musd'] < 10, 'roi'] = np.nan  # Only consider movies with budget >= 10M for ROI
+    df.loc[df['budget_musd'] < 10, 'roi'] = np.nan
 
-    # --- Define KPIs ---
+    log_event(
+        logger,
+        "info",
+        "feature_engineering",
+        "Computed profit and ROI columns",
+        total_rows=len(df)
+    )
+
     kpis = [
         {"name": "highest_revenue", "col": "revenue_musd", "asc": False},
         {"name": "highest_budget", "col": "budget_musd", "asc": False},
@@ -38,7 +70,6 @@ def compute_tmdb_kpis_and_save(df: pd.DataFrame, top_n: int = 10, output_dir: st
 
     results = {}
 
-    # --- Generic ranking function ---
     def rank_movies(df_, col, asc=True, filter_func=None):
         if filter_func:
             df_ = df_[filter_func(df_)]
@@ -46,60 +77,48 @@ def compute_tmdb_kpis_and_save(df: pd.DataFrame, top_n: int = 10, output_dir: st
         ranked['rank'] = np.arange(1, len(ranked) + 1)
         return ranked
 
-    # --- Compute each KPI ---
     for kpi in kpis:
-        logger.info(f"Computing KPI: {kpi['name']}")
+
+        log_event(
+            logger,
+            "info",
+            "kpi_computation_start",
+            f"Computing KPI: {kpi['name']}",
+            metric_column=kpi["col"]
+        )
+
         df_kpi = rank_movies(
             df,
             col=kpi['col'],
             asc=kpi.get('asc', False),
             filter_func=kpi.get('filter', None)
         )
+
         results[kpi['name']] = df_kpi
 
-    # --- Save KPIs and dataset if output_dir is provided ---
-    if output_dir:
-        os.makedirs(output_dir, exist_ok=True)
-        logger.info(f"Saving KPI results and updated dataset to directory: {output_dir}")
+        if not df_kpi.empty:
+            top_row = df_kpi.iloc[0]
 
-        # Save each KPI
-        for kpi_name, df_kpi in results.items():
-            path = os.path.join(output_dir, f"{kpi_name}.csv")
-            df_kpi.to_csv(path, index=False)
-            logger.info(f"Saved KPI '{kpi_name}' to {path}")
+            log_event(
+                logger,
+                "info",
+                "kpi_result",
+                f"KPI computed successfully",
+                kpi_name=kpi["name"],
+                metric=kpi["col"],
+                top_movie=top_row.get("title", None),
+                top_value=float(top_row[kpi["col"]]) if pd.notna(top_row[kpi["col"]]) else None,
+                rows_returned=len(df_kpi)
+            )
+        else:
+            log_event(
+                logger,
+                "warning",
+                "kpi_empty_result",
+                f"No results for KPI: {kpi['name']}",
+                kpi_name=kpi["name"]
+            )
 
-        # Save full dataset with profit and ROI
-        dataset_path = os.path.join(output_dir, "tmdb_with_roi_profit.csv")
-        df.to_csv(dataset_path, index=False)
-        logger.info(f"Saved full dataset with 'profit' and 'roi' to {dataset_path}")
+    log_event(logger,"info", "pipeline_complete", "KPI computation completed")
 
-    logger.info("KPI computation and dataset saving completed successfully")
     return results
-
-
-
-
-
-def save_kpi_results(results: Dict[str, pd.DataFrame], output_dir: str):
-    """
-    Save each KPI DataFrame to a CSV file.
-
-    Parameters
-    ----------
-    results : dict
-        Dictionary of KPI DataFrames keyed by KPI name.
-    output_dir : str
-        Directory where CSV files will be saved.
-    """
-    os.makedirs(output_dir, exist_ok=True)
-    logger.info(f"Saving KPI results to directory: {output_dir}")
-
-    for kpi_name, df_kpi in results.items():
-        file_path = os.path.join(output_dir, f"{kpi_name}.csv")
-        df_kpi.to_csv(file_path, index=False)
-        logger.info(f"Saved KPI '{kpi_name}' to {file_path}")
-
-# Example usage:
-# df_clean = pd.read_csv("../data/clean/tmdb_movies_clean.csv")
-# kpi_results = compute_tmdb_kpis_pandas(df_clean, top_n=5)
-# kpi_results['highest_profit']

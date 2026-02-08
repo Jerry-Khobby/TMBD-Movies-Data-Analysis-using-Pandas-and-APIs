@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import logging
 
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
 
-def visualize_tmdb(df: pd.DataFrame, output_dir: str = "../data/visualizations") -> dict:
+def visualize_tmdb(df: pd.DataFrame, output_dir: str = "./data/diagrams", logger: logging.Logger = None) -> dict:
+    if logger is None:
+        raise ValueError("Logger must be provided")
     """
     Generate only the visualizations required by the project for TMDB dataset.
 
@@ -17,7 +19,7 @@ def visualize_tmdb(df: pd.DataFrame, output_dir: str = "../data/visualizations")
     4. Yearly Trends in Box Office Performance
     5. Comparison of Franchise vs Standalone Success
 
-    Returns a dictionary mapping plot names to saved file paths.
+    Returns a dictionary mapping plot nameas to saved file paths.
     """
     logger.info("Starting TMDB data visualization")
     os.makedirs(output_dir, exist_ok=True)

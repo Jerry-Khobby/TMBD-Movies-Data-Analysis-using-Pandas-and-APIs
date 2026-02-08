@@ -1,7 +1,0 @@
-2026-01-25 16:24:15,712 | INFO | ===== TMDB Pipeline Started =====
-2026-01-25 16:24:15,712 | INFO | Step 1: Extracting raw movie data
-2026-01-25 16:24:25,694 | INFO | Step 2: Cleaning and transforming data
-2026-01-25 16:24:25,788 | INFO | Step 3: Computing KPI rankings
-2026-01-25 16:24:25,873 | INFO | Step 4: Computing advanced KPIs
-2026-01-25 16:24:25,960 | INFO | Step 5: Generating visualizations
-2026-01-25 16:24:28,452 | INFO | ===== TMDB Pipeline Completed Successfully =====

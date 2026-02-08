@@ -1,0 +1,60 @@
+2026-02-08 17:52:43,496 | INFO | transform | Transformation started
+2026-02-08 17:52:43,496 | INFO | transform | Starting TMDB data cleaning pipeline
+2026-02-08 17:52:43,498 | INFO | transform | Dropped irrelevant columns: ['adult', 'imdb_id', 'original_title', 'video', 'homepage']
+2026-02-08 17:52:43,498 | INFO | transform | Flattening JSON-like columns (collection, genres, spoken_languages, production)
+2026-02-08 17:52:43,526 | INFO | transform | Final row count: 18 | Final column count: 22
+2026-02-08 17:52:43,527 | INFO | transform | cast sample: ['Robert Downey Jr.|Chris Evans|Mark Ruffalo|Chris Hemsworth|Scarlett Johansson', 'Sam Worthington|Zoe Saldaña|Sigourney Weaver|Stephen Lang|Michelle Rodriguez', 'Harrison Ford|Mark Hamill|Carrie Fisher|Adam Driver|Daisy Ridley']
+2026-02-08 17:52:43,528 | INFO | transform | cast_size sample: [104, 67, 183]
+2026-02-08 17:52:43,528 | INFO | transform | director sample: ['Anthony Russo', 'James Cameron', 'J.J. Abrams']
+2026-02-08 17:52:43,528 | INFO | transform | crew_size sample: [608, 992, 265]
+2026-02-08 17:52:43,528 | INFO | transform | TMDB data cleaning pipeline completed successfully
+2026-02-08 17:52:43,529 | WARNING | transform | Failed to save clean dataset: name 'os' is not defined
+2026-02-08 17:52:43,529 | INFO | transform | Transformation completed | rows=18
+2026-02-08 17:57:22,776 | INFO | transform | Transformation started
+2026-02-08 17:57:22,776 | INFO | transform | Starting TMDB data cleaning pipeline
+2026-02-08 17:57:22,777 | INFO | transform | Dropped irrelevant columns: ['adult', 'imdb_id', 'original_title', 'video', 'homepage']
+2026-02-08 17:57:22,777 | INFO | transform | Flattening JSON-like columns (collection, genres, spoken_languages, production)
+2026-02-08 17:57:22,796 | INFO | transform | Final row count: 18 | Final column count: 22
+2026-02-08 17:57:22,797 | INFO | transform | cast sample: ['Robert Downey Jr.|Chris Evans|Mark Ruffalo|Chris Hemsworth|Scarlett Johansson', 'Sam Worthington|Zoe Saldaña|Sigourney Weaver|Stephen Lang|Michelle Rodriguez', 'Harrison Ford|Mark Hamill|Carrie Fisher|Adam Driver|Daisy Ridley']
+2026-02-08 17:57:22,797 | INFO | transform | cast_size sample: [104, 67, 183]
+2026-02-08 17:57:22,797 | INFO | transform | director sample: ['Anthony Russo', 'James Cameron', 'J.J. Abrams']
+2026-02-08 17:57:22,797 | INFO | transform | crew_size sample: [608, 992, 265]
+2026-02-08 17:57:22,797 | INFO | transform | TMDB data cleaning pipeline completed successfully
+2026-02-08 17:57:22,797 | WARNING | transform | Failed to save clean dataset: name 'os' is not defined
+2026-02-08 17:57:22,797 | INFO | transform | Transformation completed | rows=18
+2026-02-08 18:01:49,875 | INFO | transform | Transformation started
+2026-02-08 18:01:49,875 | INFO | transform | Starting TMDB data cleaning pipeline
+2026-02-08 18:01:49,876 | INFO | transform | Dropped irrelevant columns: ['adult', 'imdb_id', 'original_title', 'video', 'homepage']
+2026-02-08 18:01:49,876 | INFO | transform | Flattening JSON-like columns (collection, genres, spoken_languages, production)
+2026-02-08 18:01:49,893 | INFO | transform | Final row count: 18 | Final column count: 22
+2026-02-08 18:01:49,894 | INFO | transform | cast sample: ['Robert Downey Jr.|Chris Evans|Mark Ruffalo|Chris Hemsworth|Scarlett Johansson', 'Sam Worthington|Zoe Saldaña|Sigourney Weaver|Stephen Lang|Michelle Rodriguez', 'Harrison Ford|Mark Hamill|Carrie Fisher|Adam Driver|Daisy Ridley']
+2026-02-08 18:01:49,894 | INFO | transform | cast_size sample: [104, 67, 183]
+2026-02-08 18:01:49,894 | INFO | transform | director sample: ['Anthony Russo', 'James Cameron', 'J.J. Abrams']
+2026-02-08 18:01:49,894 | INFO | transform | crew_size sample: [608, 992, 265]
+2026-02-08 18:01:49,894 | INFO | transform | TMDB data cleaning pipeline completed successfully
+2026-02-08 18:01:49,894 | WARNING | transform | Failed to save clean dataset: name 'os' is not defined
+2026-02-08 18:01:49,894 | INFO | transform | Transformation completed | rows=18
+2026-02-08 18:12:42,199 | INFO | transform | Transformation started
+2026-02-08 18:12:42,200 | INFO | transform | Starting TMDB data cleaning pipeline
+2026-02-08 18:12:42,201 | INFO | transform | Dropped irrelevant columns: ['adult', 'imdb_id', 'original_title', 'video', 'homepage']
+2026-02-08 18:12:42,201 | INFO | transform | Flattening JSON-like columns (collection, genres, spoken_languages, production)
+2026-02-08 18:12:42,218 | INFO | transform | Final row count: 18 | Final column count: 22
+2026-02-08 18:12:42,219 | INFO | transform | cast sample: ['Robert Downey Jr.|Chris Evans|Mark Ruffalo|Chris Hemsworth|Scarlett Johansson', 'Sam Worthington|Zoe Saldaña|Sigourney Weaver|Stephen Lang|Michelle Rodriguez', 'Harrison Ford|Mark Hamill|Carrie Fisher|Adam Driver|Daisy Ridley']
+2026-02-08 18:12:42,219 | INFO | transform | cast_size sample: [104, 67, 183]
+2026-02-08 18:12:42,219 | INFO | transform | director sample: ['Anthony Russo', 'James Cameron', 'J.J. Abrams']
+2026-02-08 18:12:42,219 | INFO | transform | crew_size sample: [608, 992, 265]
+2026-02-08 18:12:42,219 | INFO | transform | TMDB data cleaning pipeline completed successfully
+2026-02-08 18:12:42,219 | WARNING | transform | Failed to save clean dataset: name 'os' is not defined
+2026-02-08 18:12:42,219 | INFO | transform | Transformation completed | rows=18
+2026-02-08 18:14:20,628 | INFO | transform | Transformation started
+2026-02-08 18:14:20,628 | INFO | transform | Starting TMDB data cleaning pipeline
+2026-02-08 18:14:20,630 | INFO | transform | Dropped irrelevant columns: ['adult', 'imdb_id', 'original_title', 'video', 'homepage']
+2026-02-08 18:14:20,631 | INFO | transform | Flattening JSON-like columns (collection, genres, spoken_languages, production)
+2026-02-08 18:14:20,694 | INFO | transform | Final row count: 18 | Final column count: 22
+2026-02-08 18:14:20,695 | INFO | transform | cast sample: ['Robert Downey Jr.|Chris Evans|Mark Ruffalo|Chris Hemsworth|Scarlett Johansson', 'Sam Worthington|Zoe Saldaña|Sigourney Weaver|Stephen Lang|Michelle Rodriguez', 'Harrison Ford|Mark Hamill|Carrie Fisher|Adam Driver|Daisy Ridley']
+2026-02-08 18:14:20,695 | INFO | transform | cast_size sample: [104, 67, 183]
+2026-02-08 18:14:20,696 | INFO | transform | director sample: ['Anthony Russo', 'James Cameron', 'J.J. Abrams']
+2026-02-08 18:14:20,696 | INFO | transform | crew_size sample: [608, 992, 265]
+2026-02-08 18:14:20,696 | INFO | transform | TMDB data cleaning pipeline completed successfully
+2026-02-08 18:14:20,696 | WARNING | transform | Failed to save clean dataset: name 'os' is not defined
+2026-02-08 18:14:20,697 | INFO | transform | Transformation completed | rows=18

@@ -5,15 +5,9 @@ from datetime import datetime
 
 # Setup module-level logger
 logger = logging.getLogger(__name__)
-if not logger.handlers:
-    ch = logging.StreamHandler()
-    formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
-    ch.setFormatter(formatter)
-    logger.addHandler(ch)
-    logger.setLevel(logging.INFO)
 
 
-def clean_tmdb(df: pd.DataFrame, validate: bool = True) -> pd.DataFrame:
+def clean_tmdb(df: pd.DataFrame, validate: bool = True,logger:logging.Logger=None) -> pd.DataFrame:
     """
     Clean and transform raw TMDB DataFrame.
     Handles JSON-like columns, numeric conversions, cast/crew extraction, and filtering.
@@ -169,7 +163,16 @@ def clean_tmdb(df: pd.DataFrame, validate: bool = True) -> pd.DataFrame:
                     logger.info("%s sample: %s", col, df[col].head(3).tolist())
 
         logger.info("TMDB data cleaning pipeline completed successfully")
+        try:
+            output_dir ="../data/clean"
+            os.makedirs(output_dir, exist_ok=True)  
+            output_file = os.path.join(output_dir, "tmdb_clean.csv")
+            df.to_csv(output_file, index=False)
+            logger.info("Saved clean dataset to %s | row count: %s", output_file, len(df))
+        except Exception as e:
+            logger.warning("Failed to save clean dataset: %s", e)
         return df
+    
 
     except Exception as e:
         logger.exception("Unexpected error in TMDB cleaning pipeline: %s", e)

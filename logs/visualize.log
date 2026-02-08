@@ -1,0 +1,45 @@
+2026-02-08 17:52:43,643 | INFO | visualize | Visualization started
+2026-02-08 17:52:43,644 | INFO | visualize | Starting TMDB data visualization
+2026-02-08 17:52:43,648 | INFO | visualize | Plotting Revenue vs Budget
+2026-02-08 17:52:45,198 | INFO | visualize | Plotting ROI Distribution by Genre
+2026-02-08 17:52:46,022 | INFO | visualize | Plotting Popularity vs Rating
+2026-02-08 17:52:46,572 | INFO | visualize | Plotting Yearly Trends in Box Office Performance
+2026-02-08 17:52:47,281 | INFO | visualize | Plotting Franchise vs Standalone Success
+2026-02-08 17:52:47,768 | INFO | visualize | TMDB data visualization completed successfully
+2026-02-08 17:52:47,768 | INFO | visualize | Visualization completed
+2026-02-08 17:57:22,856 | INFO | visualize | Visualization started
+2026-02-08 17:57:22,856 | INFO | visualize | Starting TMDB data visualization
+2026-02-08 17:57:22,858 | INFO | visualize | Plotting Revenue vs Budget
+2026-02-08 17:57:23,507 | INFO | visualize | Plotting ROI Distribution by Genre
+2026-02-08 17:57:23,922 | INFO | visualize | Plotting Popularity vs Rating
+2026-02-08 17:57:24,255 | INFO | visualize | Plotting Yearly Trends in Box Office Performance
+2026-02-08 17:57:24,588 | INFO | visualize | Plotting Franchise vs Standalone Success
+2026-02-08 17:57:24,913 | INFO | visualize | TMDB data visualization completed successfully
+2026-02-08 17:57:24,913 | INFO | visualize | Visualization completed
+2026-02-08 18:01:49,953 | INFO | visualize | Visualization started
+2026-02-08 18:01:49,953 | INFO | visualize | Starting TMDB data visualization
+2026-02-08 18:01:49,955 | INFO | visualize | Plotting Revenue vs Budget
+2026-02-08 18:01:50,546 | INFO | visualize | Plotting ROI Distribution by Genre
+2026-02-08 18:01:50,918 | INFO | visualize | Plotting Popularity vs Rating
+2026-02-08 18:01:51,241 | INFO | visualize | Plotting Yearly Trends in Box Office Performance
+2026-02-08 18:01:51,566 | INFO | visualize | Plotting Franchise vs Standalone Success
+2026-02-08 18:01:51,884 | INFO | visualize | TMDB data visualization completed successfully
+2026-02-08 18:01:51,884 | INFO | visualize | Visualization completed
+2026-02-08 18:12:42,284 | INFO | visualize | Visualization started
+2026-02-08 18:12:42,284 | INFO | visualize | Starting TMDB data visualization
+2026-02-08 18:12:42,285 | INFO | visualize | Plotting Revenue vs Budget
+2026-02-08 18:12:42,838 | INFO | visualize | Plotting ROI Distribution by Genre
+2026-02-08 18:12:43,155 | INFO | visualize | Plotting Popularity vs Rating
+2026-02-08 18:12:43,449 | INFO | visualize | Plotting Yearly Trends in Box Office Performance
+2026-02-08 18:12:43,718 | INFO | visualize | Plotting Franchise vs Standalone Success
+2026-02-08 18:12:44,123 | INFO | visualize | TMDB data visualization completed successfully
+2026-02-08 18:12:44,123 | INFO | visualize | Visualization completed
+2026-02-08 18:14:20,930 | INFO | visualize | Visualization started
+2026-02-08 18:14:20,931 | INFO | visualize | Starting TMDB data visualization
+2026-02-08 18:14:20,933 | INFO | visualize | Plotting Revenue vs Budget
+2026-02-08 18:14:22,520 | INFO | visualize | Plotting ROI Distribution by Genre
+2026-02-08 18:14:23,659 | INFO | visualize | Plotting Popularity vs Rating
+2026-02-08 18:14:24,179 | INFO | visualize | Plotting Yearly Trends in Box Office Performance
+2026-02-08 18:14:24,735 | INFO | visualize | Plotting Franchise vs Standalone Success
+2026-02-08 18:14:25,343 | INFO | visualize | TMDB data visualization completed successfully
+2026-02-08 18:14:25,344 | INFO | visualize | Visualization completed

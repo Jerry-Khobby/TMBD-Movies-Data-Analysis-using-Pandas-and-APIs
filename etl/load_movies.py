@@ -7,14 +7,8 @@ from etl.transform import clean_tmdb
 
 # Setup logger
 logger = logging.getLogger(__name__)
-if not logger.hasHandlers():  # avoid duplicate handlers if imported multiple times
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S"
-    )
 
-def load_and_clean_tmdb(raw_json_path: str, output_csv_path: str) -> pd.DataFrame:
+def load_and_clean_tmdb(raw_json_path: str, output_csv_path: str,logger:logging.Logger=None) -> pd.DataFrame:
     """
     Load raw TMDB JSON, clean it, and save cleaned CSV.
     Returns the cleaned DataFrame or empty DataFrame if errors occur.

@@ -29,13 +29,6 @@ os.makedirs(LOG_DIR, exist_ok=True)
 
 
 # Logging setup
-
-logging.basicConfig(
-    filename=os.path.join(LOG_DIR, f"tmdb_extraction_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"),
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
-)
 logger = logging.getLogger(__name__)
 
 
@@ -83,7 +76,7 @@ def fetch_movie_with_credits(movie_id: int) -> dict | None:
 
 
 #Extraction of data 
-def extract_tmdb_movies_as_dataframe() -> pd.DataFrame:
+def extract_tmdb_movies(logger: logging.Logger) -> pd.DataFrame:
     """Extract TMDB movies and return as a Pandas DataFrame with error handling."""
     records = []
 
@@ -120,11 +113,3 @@ def save_dataframe(df: pd.DataFrame, json_path: str):
     except Exception as e:
         logger.exception("Failed to save DataFrame | path=%s | error=%s", json_path, e)
 
-if __name__ == "__main__":
-    logger.info("===== TMDB Extraction Pipeline Started =====")
-    df_movies = extract_tmdb_movies_as_dataframe()
-    if not df_movies.empty:
-        save_dataframe(df_movies, "../data/raw/tmdb_movies_raw.json")
-    else:
-        logger.error("No data to save. Pipeline completed with errors.")
-    logger.info("===== TMDB Extraction Pipeline Completed =====")
